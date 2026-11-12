@@ -174,7 +174,8 @@ class bfgs_iter:
         work_dir = root_dir + self.folder_name + str(self.scf_iter) + "/"
 
         if self.scf_iter == 1:
-            os.mkdir(work_dir)
+            if not os.path.exists(work_dir):
+                os.mkdir(work_dir)
             shutil.copy2(self.pw_input, work_dir + self.pw_input)
             # also copy nscf.in if necessary
             if self.run_nscf:
