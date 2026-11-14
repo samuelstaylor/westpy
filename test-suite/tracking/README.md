@@ -12,6 +12,8 @@ dev environment (`westpy-dev`, with `PYTHONNOUSERSITE=1`).
 
 The fake executables are small Python scripts, not QE/WEST: no real code is run by the tests.
 
+**Results of every test, with what was found:** [`results/`](results/README.md).
+
 ## Commands
 
 ```bash

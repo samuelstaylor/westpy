@@ -8,6 +8,7 @@ wbse_control:
   wbse_calculation: D
   n_liouville_eigen: 4
   n_liouville_maxiter: 1000
+  n_liouville_times: 10
   trev_liouville: 0.00000001
   trev_liouville_rel: 0.000001
   spin_excitation: S

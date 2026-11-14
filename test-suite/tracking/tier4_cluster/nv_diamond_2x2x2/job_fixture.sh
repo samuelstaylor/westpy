@@ -2,8 +2,8 @@
 #SBATCH -A m542                 # CPU account (no _g suffix)
 #SBATCH --qos=debug             # regular, debug
 #SBATCH --nodes=1               # 8 max on debug
-#SBATCH --ntasks-per-node=32
-#SBATCH --cpus-per-task=8       # 2*floor(128/32) per NERSC guidance
+#SBATCH --ntasks-per-node=48
+#SBATCH --cpus-per-task=4       # 2*floor(128/48) per NERSC guidance
 #SBATCH -C cpu
 #SBATCH -t 00:30:00             # 30 min max for debug
 #SBATCH -J nvd-fixture
@@ -222,9 +222,9 @@ run_cmd () {
 # --== NV- DIAMOND 2x2x2: SINGLE-POINT FIXTURE (pw -> wbse -> westpp) ==--
 # Initial C3v geometry, 4 TDDFT states with forces on state 1, CM decomposition 1-4.
 
-run_cmd "srun -n 32 $QEDIR/pw.x -i pw.in > pw.out"
-run_cmd "srun -n 32 $QEDIR/wbse.x -i wbse.in > wbse.out"
-run_cmd "srun -n 32 $QEDIR/westpp.x -i westpp.in > westpp.out"
+run_cmd "srun -n 48 $QEDIR/pw.x -i pw.in > pw.out"
+run_cmd "srun -n 48 $QEDIR/wbse.x -i wbse.in > wbse.out"
+run_cmd "srun -n 48 $QEDIR/westpp.x -i westpp.in > westpp.out"
 
 # identification against itself (no executables): identity, O_ii ~ 1
 run_cmd "$DEV_PY -P -m westpy.tracking_cli selfcompare . > selfcompare.out"

@@ -2,8 +2,8 @@
 #SBATCH -A m542                 # CPU account (no _g suffix)
 #SBATCH --qos=debug             # regular, debug
 #SBATCH --nodes=1               # 8 max on debug
-#SBATCH --ntasks-per-node=32
-#SBATCH --cpus-per-task=8       # 2*floor(128/32) per NERSC guidance
+#SBATCH --ntasks-per-node=48
+#SBATCH --cpus-per-task=4       # 2*floor(128/48) per NERSC guidance
 #SBATCH -C cpu
 #SBATCH -t 00:30:00             # 30 min max for debug
 #SBATCH -J nvd-relax

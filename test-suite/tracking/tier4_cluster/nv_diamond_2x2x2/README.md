@@ -16,7 +16,9 @@ westpp.in: CM, states 1-4, signed, spin-conserving.
 | `fixture/` | `job_fixture.sh` | single point: pw -> wbse -> westpp, then `tracking_cli selfcompare`. Becomes the tier-3 diamond fixture (`pytest -m fixture`). |
 | `relax/` | `job_relax.sh` | `bfgs_iter_tracked`, tracking + test mode, maxiter 20; resubmit to continue (auto restart). |
 
-CPU build `QEdir_cpu`, debug queue, 1 node x 32 MPI x 8 CPUs, 30 min.
+CPU build `QEdir_cpu`, debug queue, 1 node x 48 MPI x 4 CPUs, 30 min.
+wbse.in: n_liouville_maxiter 1000 and n_liouville_times 10 (needed at the degenerate C3v start).
+Results: ../../results/05_nv_diamond_fixture.md and ../../results/06_nv_diamond_relaxation.md.
 `ESPRESSO_PSEUDO=./` because pw.in has `pseudo_dir` commented out.
 
 Check afterwards:

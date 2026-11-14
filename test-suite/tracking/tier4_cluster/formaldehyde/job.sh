@@ -220,7 +220,7 @@ run_cmd () {
 # --== FORMALDEHYDE EXCITED-STATE BFGS (tracking smoke test) ==--
 # bfgs.py launches pw.x / wbse.x (/ westpp.x) with srun itself.
 
-run_cmd "$DEV_PY bfgs.py > bfgs.out"
+run_cmd "$DEV_PY bfgs.py >> bfgs.out"
 
 # ================================
 # Done
