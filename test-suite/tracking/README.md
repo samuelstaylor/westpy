@@ -7,7 +7,7 @@ dev environment (`westpy-dev`, with `PYTHONNOUSERSITE=1`).
 |---|---|---|---|---|
 | 1 | `tier1_unit/` | westpp JSON parsing, band window, overlaps and identification (band swap, sign flip, rotated degenerate pair; orbitals on/off), validation warnings, wbse.in edit, stash round trip, trajectory rewrite | synthetic (`tracking_model.py`) | always, ~2 s |
 | 2 | `tier2_mockwest/` | the whole BFGS loop with fake `pw.x`/`wbse.x`/`westpp.x` (`fake_west.py`): pass-through identical to `bfgs_iter`, planted crossing (swap, wbse-only rerun, test-mode files, trajectory), orbitals off missing the swap, restart, stop on low overlap, replay, `step-1` mkdir fix | synthetic files | always, ~1 min |
-| 3 | `tier3_fixture/` | real WEST output: JSON vs `westpp-CM.out`, self-comparison = identity with O_ii ~ 1, real-size stash | `$SCRATCH/tracking_fixture` (MgO VEE), `$SCRATCH/tracking_fixture_diamond` | `-m fixture`, ~40 s |
+| 3 | `tier3_fixture/` | real WEST output: JSON vs `westpp-CM.out`, self-comparison = identity with O_ii ~ 1, real-size stash | `$SCRATCH/tracking_fixture` (MgO VEE), `/global/cfs/cdirs/m4382/sstaylor/tracking_tests/nv_diamond_2x2x2/fixture` (NV- diamond) | `-m fixture`, ~40 s |
 | 4 | `tier4_cluster/` | job templates you submit: formaldehyde smoke test, NV- diamond 2x2x2 crossing test, MgO example `bfgs.py` | Perlmutter | by hand |
 
 The fake executables are small Python scripts, not QE/WEST: no real code is run by the tests.
