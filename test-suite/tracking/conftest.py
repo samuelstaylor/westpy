@@ -24,7 +24,7 @@ MGO_VEE_FIXTURE = os.environ.get(
     "TRACKING_FIXTURE", os.path.expandvars("$SCRATCH/tracking_fixture")
 )
 DIAMOND_FIXTURE = os.environ.get(
-    "TRACKING_FIXTURE_DIAMOND", os.path.expandvars("$SCRATCH/tracking_fixture_diamond")
+    "TRACKING_FIXTURE_DIAMOND", "/global/cfs/cdirs/m4382/sstaylor/tracking_tests/nv_diamond_2x2x2/fixture"
 )
 
 

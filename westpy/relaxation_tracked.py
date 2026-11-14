@@ -285,7 +285,7 @@ def dominant_transitions(state, n=5):
         flat = np.argsort(-np.abs(X), axis=None)[:n]
         for k in flat:
             iv, ic = np.unravel_index(k, X.shape)
-            items.append((fs, b["occ"][0] + iv, ts, b["vir"][0] + ic, float(X[iv, ic])))
+            items.append((int(fs), int(b["occ"][0] + iv), int(ts), int(b["vir"][0] + ic), float(X[iv, ic])))
     items.sort(key=lambda t: -abs(t[4]))
     return items[:n]
 
@@ -1065,10 +1065,23 @@ class bfgs_iter_tracked(bfgs_iter):
                 f.write(format_swap_summary(self.history))
 
 
+def _json_default(obj):
+    """NumPy scalars/arrays -> JSON, keeping integers as integers."""
+    if isinstance(obj, np.integer):
+        return int(obj)
+    if isinstance(obj, np.floating):
+        return float(obj)
+    if isinstance(obj, np.bool_):
+        return bool(obj)
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    raise TypeError(f"{type(obj).__name__} is not JSON serializable")
+
+
 def _dump_json(path, data):
     tmp = path + ".tmp"
     with open(tmp, "w") as f:
-        json.dump(data, f, indent=2, default=float)
+        json.dump(data, f, indent=2, default=_json_default)
     os.replace(tmp, path)
 
 

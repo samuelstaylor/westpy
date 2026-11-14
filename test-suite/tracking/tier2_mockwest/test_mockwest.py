@@ -166,6 +166,8 @@ def test_planted_crossing_with_test_mode(tmp_path, monkeypatch, capsys):
     for r in hist[1:]:
         assert r["max_overlap"] == pytest.approx(1.0, abs=1e-8)
         assert r["total_force"] is not None
+    for r in hist:  # band indices stay integers in history.json
+        assert all(isinstance(k, int) for t in r["dominant_transitions"] for k in t[:4])
     assert "STATE SWAP: 1 -> 2" in log
     assert "tracking: 1 state swap(s), final tracked state = 2" in log
 

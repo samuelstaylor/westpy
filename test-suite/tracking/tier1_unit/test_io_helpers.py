@@ -132,3 +132,19 @@ def test_read_eigenvalues_xml(tmp_path):
     got = read_eigenvalues_xml(str(xml))
     np.testing.assert_allclose(got[1], e[1])
     np.testing.assert_allclose(got[2], e[2])
+
+
+def test_json_keeps_integers(tmp_path):
+    """history.json: NumPy integers (band indices) must not become floats."""
+    import json
+    from westpy.relaxation_tracked import _dump_json, dominant_transitions
+
+    st = tm.geometry_state(["A"], {s: tm.band_transform() for s in (1, 2)})["states"][1]
+    top = dominant_transitions(st, n=2)
+    p = str(tmp_path / "h.json")
+    _dump_json(p, {"top": top, "i": np.int64(7), "x": np.float64(0.5), "b": np.bool_(True), "a": np.arange(3)})
+    back = json.load(open(p))
+    assert back["i"] == 7 and isinstance(back["i"], int)
+    assert isinstance(back["x"], float) and back["b"] is True and back["a"] == [0, 1, 2]
+    fs, v, ts, c, x = back["top"][0]
+    assert all(isinstance(k, int) for k in (fs, v, ts, c)) and isinstance(x, float)

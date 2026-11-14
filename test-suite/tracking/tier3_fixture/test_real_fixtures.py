@@ -2,7 +2,7 @@
 
 MgO VEE fixture (default $SCRATCH/tracking_fixture, override TRACKING_FIXTURE):
 slim copy of /global/cfs/cdirs/m4382/sstaylor/projects/nv_mgo/tddft-ddh/vees/spin-conserving.
-NV- diamond 2x2x2 fixture (TRACKING_FIXTURE_DIAMOND): a single-point
+NV- diamond 2x2x2 fixture (TRACKING_FIXTURE_DIAMOND, default the CFS fixture/ run): a single-point
 pw + wbse + westpp run, prepared in tier4_cluster/nv_diamond_2x2x2 (skipped until it exists).
 """
 
